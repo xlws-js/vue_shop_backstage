@@ -6,5 +6,12 @@ export function request ( config ) {
         timeout: 5000
     } )
 
+    // 请求拦截
+    instance.interceptors.request.use( config => {
+        // 为请求对象，添加 Token 验证的 Authorization 字段
+        config.headers.Authorization = window.sessionStorage.getItem( 'token' )
+        return config
+    } )
+
     return instance( config )
 }

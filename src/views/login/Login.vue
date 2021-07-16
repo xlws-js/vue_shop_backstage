@@ -57,9 +57,10 @@ export default {
                 request( {
                     method: 'post',
                     url: 'login',
-                    params: this.loginFrom
+                    data: this.loginFrom
                 } )
                 .then( ({ data: response }) => {
+                    console.log( response );
                     if (  response.meta.status !== 200 ) return this.$toast.error( '登录失败' )
                     this.$toast.success( '登录成功' )
                     // 1、将登陆之后的 token，保存到客户端的 sessionStorage 中
